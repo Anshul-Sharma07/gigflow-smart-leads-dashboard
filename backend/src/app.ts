@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+
 import connectDB from './config/database';
 import authRoutes from './routes/auth.routes';
 import leadRoutes from './routes/lead.routes';
@@ -13,10 +14,13 @@ const app = express();
 
 // Security
 app.use(helmet());
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true,
-}));
+
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -24,6 +28,7 @@ const limiter = rateLimit({
   max: 100,
   message: 'Too many requests, please try again later.',
 });
+
 app.use('/api', limiter);
 
 // Body parsing
@@ -37,7 +42,10 @@ if (process.env.NODE_ENV !== 'test') {
 
 // Health check
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Routes
@@ -51,10 +59,19 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 const start = async () => {
-  await connectDB();
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
-  });
+  try {
+    await connectDB();
+
+    app.listen(PORT, () => {
+      console.log(
+        `🚀 Server running on port ${PORT} in ${
+          process.env.NODE_ENV || 'development'
+        } mode`
+      );
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+  }
 };
 
 start();
