@@ -1,101 +1,121 @@
-⚡ GigFlow – Smart Leads Dashboard
+# ⚡ GigFlow – Smart Leads Dashboard
 
-A production-grade MERN + TypeScript SaaS Lead Management Dashboard featuring authentication, role-based access control, advanced filtering, pagination, and a modern responsive UI.
+A production-grade **MERN + TypeScript SaaS Lead Management Dashboard** featuring authentication, role-based access control, advanced filtering, pagination, and a modern UI.
 
-Built using React, Node.js, Express, MongoDB, TypeScript, and modern frontend architecture practices, this project demonstrates real-world scalable SaaS system design.
+---
 
-📌 Table of Contents
-Project Overview
-Key Features
-System Architecture
-Tech Stack
-Setup and Installation
-How to Use
-Project Structure
-API Documentation
-Role-Based Access Control
-Key Engineering Decisions
-Future Improvements
-License
-Contact
-📖 Project Overview
+## 📌 Table of Contents
 
-GigFlow is a full-stack Lead Management System designed to simulate real-world CRM SaaS platforms.
+- Project Overview  
+- Key Features  
+- System Architecture  
+- Tech Stack  
+- Setup and Installation  
+- How to Use  
+- Project Structure  
+- API Documentation  
+- Role-Based Access Control  
+- Key Engineering Decisions  
+- Future Improvements  
+- License  
+- Contact  
+
+---
+
+## 📖 Project Overview
+
+GigFlow is a full-stack **Lead Management System** designed to simulate real-world CRM SaaS platforms.
 
 It allows users to:
+- Authenticate securely
+- Manage leads with full CRUD operations
+- Filter, search, and sort leads
+- Export data as CSV
+- Use role-based access control (Admin / Sales)
 
-Authenticate securely
-Manage leads with full CRUD operations
-Filter, search, and sort large datasets
-Export data as CSV
-Work with role-based permissions (Admin / Sales)
+Built using **React, Node.js, Express, MongoDB, and TypeScript**, following scalable architecture principles.
 
-The system is optimized for scalability, performance, and maintainability using TypeScript and modular architecture.
+---
 
-✨ Key Features
-🔐 Authentication System
-JWT-based authentication
-Secure login & registration
-Password hashing using bcrypt
-Protected routes via middleware
-👥 Role-Based Access Control
-Admin & Sales roles
-Admin can delete leads
-Sales users have restricted permissions
-📋 Leads Management (CRUD)
-Create, update, delete, view leads
-Structured schema with status & source tracking
-Validation on all inputs
-🔍 Advanced Filtering & Search
-Filter by status (New, Contacted, Qualified, Lost)
-Filter by source (Website, Instagram, Referral)
-Search by name or email
-Combined multi-filter support
-📄 Pagination
-Backend-driven pagination
-10 records per page
-Skip/limit implementation
-Pagination metadata included in response
-📤 Export System
-CSV export for filtered results
-🎨 UI Features
-Responsive dashboard UI
-Loading & error states
-Toast notifications
-Optimistic UI updates
-Reusable components
-🧠 System Architecture
-Frontend (React + TypeScript + Zustand)
-        |
-        v
-API Layer (Axios Client)
-        |
-        v
-Backend (Node.js + Express + TypeScript)
-        |
-        v
-Service Layer (Business Logic)
-        |
-        v
-MongoDB (Mongoose Models)
-🛠 Tech Stack
-Frontend
-React 18
-TypeScript
-Vite
-TailwindCSS
-Zustand
-React Hook Form + Zod
-Axios
-Backend
-Node.js
-Express.js
-TypeScript
-MongoDB + Mongoose
-JWT Authentication
-bcrypt
-🚀 Setup and Installation
-1. Clone Repository
+## ✨ Key Features
+
+### 🔐 Authentication
+- JWT-based login & registration
+- Password hashing using bcrypt
+- Protected routes via middleware
+
+### 👥 Role-Based Access Control
+- Admin & Sales roles
+- Admin can delete leads
+- Sales users have restricted permissions
+
+### 📋 Leads Management
+- Create, update, delete, view leads
+- Status tracking: New, Contacted, Qualified, Lost
+- Source tracking: Website, Instagram, Referral
+
+### 🔍 Advanced Filtering & Search
+- Filter by status and source
+- Search by name or email
+- Sorting: latest / oldest
+- Combined filters support
+
+### 📄 Pagination
+- Backend pagination (10 records per page)
+- Skip/limit implementation
+- Pagination metadata included
+
+### 📤 CSV Export
+- Export filtered leads data
+
+### 🎨 UI Features
+- Responsive dashboard
+- Loading & error states
+- Toast notifications
+- Optimistic UI updates
+
+---
+
+## 🧠 System Architecture
+
+Frontend (React + TypeScript + Zustand)  
+↓  
+API Layer (Axios)  
+↓  
+Backend (Node.js + Express + TypeScript)  
+↓  
+Service Layer (Business Logic)  
+↓  
+MongoDB (Mongoose)
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React 18
+- TypeScript
+- Vite
+- TailwindCSS
+- Zustand
+- React Hook Form + Zod
+- Axios
+
+### Backend
+- Node.js
+- Express.js
+- TypeScript
+- MongoDB + Mongoose
+- JWT Authentication
+- bcrypt
+
+---
+
+## 🚀 Setup and Installation
+
+### 1. Clone Repository
+
+```bash
 git clone https://github.com/Anshul-Sharma07/gigflow-smart-leads-dashboard.git
 cd gigflow-smart-leads-dashboard
 2. Backend Setup
@@ -109,11 +129,11 @@ cp .env.example .env
 npm install
 npm run dev
 🌐 How to Use
-Register or login as a user
+Register or login
 Access dashboard based on role
-Create and manage leads
-Apply filters or search leads
-Export data as CSV if needed
+Create, edit, delete leads
+Use filters / search
+Export CSV if needed
 📁 Project Structure
 gigflow/
 ├── backend/
@@ -140,19 +160,17 @@ gigflow/
 │   │   ├── types/
 │   │   └── utils/
 🔌 API Documentation
-Auth APIs
+Auth Routes
 POST /auth/register
 POST /auth/login
 GET /auth/me
-Leads APIs
+Leads Routes
 GET /leads
 POST /leads
 PUT /leads/:id
 DELETE /leads/:id
 GET /leads/stats
 GET /leads/export
-Query Parameters
-/leads?status=Qualified&source=Instagram&search=Rahul&page=1&sort=latest
 🔐 Role-Based Access Control
 Action	Admin	Sales
 View Leads	✅	✅
@@ -160,18 +178,18 @@ Create Leads	✅	✅
 Update Leads	✅	✅
 Delete Leads	✅	❌
 🧠 Key Engineering Decisions
-Zustand used instead of Redux for simplicity & performance
-Zod used for strict form validation
-Service layer architecture for backend separation
-Centralized error handling middleware
-Debounced search to reduce API load
-Optimistic UI for better UX
+Zustand instead of Redux for simplicity
+Zod for form validation
+Service-layer backend architecture
+Centralized error handling
+Debounced search optimization
+Optimistic UI updates
 🚀 Future Improvements
-WebSocket-based real-time updates
-Analytics dashboard (charts + insights)
-Email automation for leads
+Real-time updates (WebSockets)
+Analytics dashboard
+Email automation
 Multi-tenant SaaS support
-Advanced audit logs system
+Audit logs system
 📄 License
 
 MIT License © 2026
